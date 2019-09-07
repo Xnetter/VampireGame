@@ -37,8 +37,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void fixedUpdate() 
+    void FixedUpdate() 
     {
+        Debug.Log("fixedUpdate"); 
     	controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump); 
     }
 }
