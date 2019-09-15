@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         }
         if (isGrounded && Input.GetKeyDown(KeyCode.W))
         {
+            isGrounded = false; 
             rb.velocity = Vector2.up * jumpForce;
         }
 
