@@ -13,19 +13,22 @@ public class PlayerMovement : MonoBehaviour {
 	bool crouch = false;
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update () 
+	{
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
 		if (Input.GetButtonDown("Jump"))
 		{
+			Debug.Log("Got Jump button down."); 
 			jump = true;
 		}
 
 		if (Input.GetButtonDown("Crouch"))
 		{
 			crouch = true;
-		} else if (Input.GetButtonUp("Crouch"))
+		} 
+		
+		else if (Input.GetButtonUp("Crouch"))
 		{
 			crouch = false;
 		}
@@ -36,6 +39,6 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		// Move our character
 		controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-		jump = false;
+		jump = false; 
 	}
 }
