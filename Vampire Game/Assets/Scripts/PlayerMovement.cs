@@ -1,46 +1,44 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
-	//public CharacterController2D controller; 
-	public float runSpeed = 40f; 
-	public float horizontalMove = 0f; 
-	bool jump = false; 
-	bool crouch = false; 
+public class PlayerMovement : MonoBehaviour {
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public CharacterController2D controller;
 
-    // Update is called once per frame
-    void Update()
-    {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed; 
+	public float runSpeed = 40f;
 
-        if (Input.GetButtonDown("Jump")) 
-        {
-        	jump = true; 
-        }
+	float horizontalMove = 0f;
+	bool jump = false;
+	bool crouch = false;
+	
+	// Update is called once per frame
+	void Update () 
+	{
+		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        if (Input.GetButtonDown("Crouch")) 
-        {
-        	crouch = true; 
-        }
+		if (Input.GetButtonDown("Jump"))
+		{
+			Debug.Log("Got Jump button down."); 
+			jump = true;
+		}
 
-        else if (Input.GetButtonUp("Crouch"))
-        {
-        	crouch = false; 
-        }
-    }
+		if (Input.GetButtonDown("Crouch"))
+		{
+			crouch = true;
+		} 
+		
+		else if (Input.GetButtonUp("Crouch"))
+		{
+			crouch = false;
+		}
 
-    void FixedUpdate() 
-    {
-        Debug.Log("fixedUpdate"); 
-    	//controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump); 
-    }
+	}
+
+	void FixedUpdate ()
+	{
+		// Move our character
+		controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+		jump = false; 
+	} //this is a new comment
 }
-     
